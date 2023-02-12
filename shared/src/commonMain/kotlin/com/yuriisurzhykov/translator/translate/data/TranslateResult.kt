@@ -5,7 +5,9 @@ package com.yuriisurzhykov.translator.translate.data
  */
 interface TranslateResult {
 
+    fun getResult(): String
+
     class TranslationSuccess(private val result: TranslateResponseModel) : TranslateResult {
-        fun getTranslatedText() = result.translatedText
+        override fun getResult() = result.translatedText
     }
 }
