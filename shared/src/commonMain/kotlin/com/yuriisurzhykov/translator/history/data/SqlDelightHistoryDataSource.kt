@@ -6,12 +6,13 @@ import com.yuriisurzhykov.translator.core.domain.CommonFlow
 import com.yuriisurzhykov.translator.core.domain.asCommonFlow
 import com.yuriisurzhykov.translator.database.TranslateDatabase
 import com.yuriisurzhykov.translator.history.domain.HistoryDataSource
-import com.yuriisurzhykov.translator.history.domain.HistoryEntityMapper
+import com.yuriisurzhykov.translator.history.domain.HistoryEntityListMapper
 import com.yuriisurzhykov.translator.history.presentation.HistoryPresentationItem
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 
 class SqlDelightHistoryDataSource(
+    private val cacheToPresentationMapper: HistoryEntityListMapper,
     db: TranslateDatabase
 ) : HistoryDataSource {
 
@@ -34,7 +35,7 @@ class SqlDelightHistoryDataSource(
             .asFlow()
             .mapToList()
             .map { list ->
-                list.map { HistoryEntityMapper().map(it) }
+                cacheToPresentationMapper.map(list)
             }
             .asCommonFlow()
     }
