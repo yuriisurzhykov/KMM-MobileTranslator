@@ -92,3 +92,10 @@ android {
         targetSdk = ProjectConfig.Android.targetVersion
     }
 }
+
+sqldelight {
+    database("TranslateDatabase") {
+        packageName = "${ProjectConfig.applicationId}.database"
+        sourceFolders = listOf("sqldelight")
+    }
+}

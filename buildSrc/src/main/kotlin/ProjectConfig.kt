@@ -1,6 +1,6 @@
 object ProjectConfig {
 
-    const val applicationId = "com.yuriisurzhykov.kmmtranslator"
+    const val applicationId = "com.yuriisurzhykov.translator"
 
     object Android {
         const val minVersion = 24
