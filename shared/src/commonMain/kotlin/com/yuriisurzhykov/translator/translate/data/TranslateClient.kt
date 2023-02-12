@@ -11,9 +11,9 @@ interface TranslateClient {
     /**
      * @param fromLang The [Language] you need to translate text from.
      * @param toLang The [Language] you need to translate to.
-     * @return The [TranslateResult] that should be one of results declared in the interface.
+     * @return The [TranslateDataResult] that should be one of results declared in the interface.
      */
     suspend fun translate(
-        fromLang: Language, toLang: Language, translateText: String
-    ): TranslateResult
+        text: String, fromLang: Language, toLang: Language
+    ): TranslateDataResult
 }

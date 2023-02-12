@@ -8,4 +8,6 @@ interface Mapper<I, O> {
 
     interface EmptyMapper<I : Any> : NotNullMapper<I, Nothing>
 
+    interface ListMapper<I, O> : Mapper<List<I>, List<O>>
+
 }
