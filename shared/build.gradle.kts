@@ -85,7 +85,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.yuriisurzhykov.translator"
+    namespace = ProjectConfig.applicationId
     compileSdk = ProjectConfig.Android.compileVersion
     defaultConfig {
         minSdk = ProjectConfig.Android.minVersion
