@@ -4,7 +4,7 @@ import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.language.data.Language
 import com.yuriisurzhykov.translator.translate.data.TranslateClient
 import com.yuriisurzhykov.translator.translate.data.TranslateRequestModel
-import com.yuriisurzhykov.translator.translate.data.TranslateResult
+import com.yuriisurzhykov.translator.translate.data.TranslateDataResult
 import com.yuriisurzhykov.translator.translate.data.TranslationError
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -17,15 +17,15 @@ class KtorTranslateClient constructor(
 ) : TranslateClient {
 
     override suspend fun translate(
-        fromLang: Language, toLang: Language, translateText: String
-    ): TranslateResult {
+        text: String, fromLang: Language, toLang: Language
+    ): TranslateDataResult {
         val result = try {
             httpClient.post { requestTransform.transform(this) }
         } catch (e: IOException) {
             throw TranslationError.ServiceNotAvailable()
         }
         checkForResponseError(result.status.value)
-        return TranslateResult.TranslationSuccess(result.body())
+        return TranslateDataResult.TranslationSuccess(result.body())
     }
 
     private fun checkForResponseError(code: Int) {

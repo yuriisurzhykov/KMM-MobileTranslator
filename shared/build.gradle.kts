@@ -85,10 +85,17 @@ kotlin {
 }
 
 android {
-    namespace = "com.yuriisurzhykov.translator"
+    namespace = ProjectConfig.applicationId
     compileSdk = ProjectConfig.Android.compileVersion
     defaultConfig {
         minSdk = ProjectConfig.Android.minVersion
         targetSdk = ProjectConfig.Android.targetVersion
+    }
+}
+
+sqldelight {
+    database("TranslateDatabase") {
+        packageName = "${ProjectConfig.applicationId}.database"
+        sourceFolders = listOf("sqldelight")
     }
 }

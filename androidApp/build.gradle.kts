@@ -7,10 +7,10 @@ plugins {
 }
 
 android {
-    namespace = "com.yuriisurzhykov.translator.android"
+    namespace = ProjectConfig.Android.applicationId
     compileSdk = ProjectConfig.Android.compileVersion
     defaultConfig {
-        applicationId = "com.yuriisurzhykov.translator.android"
+        applicationId = ProjectConfig.Android.applicationId
         minSdk = ProjectConfig.Android.minVersion
         targetSdk = ProjectConfig.Android.targetVersion
         versionCode = 1
@@ -29,7 +29,7 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
         }
     }
 }
