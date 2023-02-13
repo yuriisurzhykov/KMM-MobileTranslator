@@ -3,7 +3,7 @@ package com.yuriisurzhykov.translator.language.presentation
 import com.yuriisurzhykov.translator.core.Mapper
 import com.yuriisurzhykov.translator.language.data.Language
 
-class UiLanguageMapper(
+actual class UiLanguageMapper(
     private val countryCodeEmojiMapper: CountryCodeEmojiMapper
 ) : Mapper<Language, UiLanguage> {
 
