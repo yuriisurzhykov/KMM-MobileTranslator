@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.translator.translate.remote
+package com.yuriisurzhykov.translator.translate.data.remote
 
 import io.ktor.client.*
 
