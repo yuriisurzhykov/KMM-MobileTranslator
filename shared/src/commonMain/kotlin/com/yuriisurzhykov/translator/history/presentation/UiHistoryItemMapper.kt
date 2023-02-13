@@ -12,9 +12,9 @@ interface UiHistoryItemMapper : Mapper<HistoryDomainItem, UiHistoryItem> {
             return UiHistoryItem(
                 id = input.id,
                 fromText = input.fromText,
-                fromLanguage = UiLanguage.byCode(input.fromLanguageCode),
+                fromLanguage = codeMapper.invoke(input.fromLanguageCode),
                 toText = input.toText,
-                toLanguage = UiLanguage.byCode(input.toLanguageCode)
+                toLanguage = codeMapper.invoke(input.toLanguageCode)
             )
         }
     }
