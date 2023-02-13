@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
+            TranslatorTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -27,11 +27,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun mainViewList() {
-
-}
-
-@Composable
 fun GreetingView(text: String) {
     Text(text = text)
 }
@@ -39,7 +34,7 @@ fun GreetingView(text: String) {
 @Preview
 @Composable
 fun DefaultPreview() {
-    MyApplicationTheme {
+    TranslatorTheme {
         GreetingView("Hello, Android!")
     }
 }
