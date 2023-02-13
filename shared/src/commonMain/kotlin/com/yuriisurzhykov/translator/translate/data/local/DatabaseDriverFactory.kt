@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.translator.translate.local
+package com.yuriisurzhykov.translator.translate.data.local
 
 import com.squareup.sqldelight.db.SqlDriver
 
