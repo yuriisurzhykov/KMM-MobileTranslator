@@ -7,7 +7,7 @@ import com.yuriisurzhykov.translator.core.domain.asCommonFlow
 import com.yuriisurzhykov.translator.database.TranslateDatabase
 import com.yuriisurzhykov.translator.history.domain.HistoryDataSource
 import com.yuriisurzhykov.translator.history.domain.HistoryEntityListMapper
-import com.yuriisurzhykov.translator.history.presentation.HistoryPresentationItem
+import com.yuriisurzhykov.translator.history.domain.HistoryDomainItem
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 
@@ -18,7 +18,7 @@ class SqlDelightHistoryDataSource(
 
     private val queries = db.translateQueries
 
-    override suspend fun insert(item: HistoryPresentationItem) {
+    override suspend fun insert(item: HistoryDomainItem) {
         queries.insertHistoryEntity(
             id = item.id,
             fromLanguageCode = item.fromLanguageCode,
@@ -29,7 +29,7 @@ class SqlDelightHistoryDataSource(
         )
     }
 
-    override fun getHistory(): CommonFlow<List<HistoryPresentationItem>> {
+    override fun getHistory(): CommonFlow<List<HistoryDomainItem>> {
         return queries
             .getHistory()
             .asFlow()

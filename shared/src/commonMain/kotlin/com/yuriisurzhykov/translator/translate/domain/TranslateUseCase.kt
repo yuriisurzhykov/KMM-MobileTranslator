@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.translator.translate.presentation
+package com.yuriisurzhykov.translator.translate.domain
 
 import com.yuriisurzhykov.translator.history.domain.HistoryDataSource
 import com.yuriisurzhykov.translator.language.data.Language

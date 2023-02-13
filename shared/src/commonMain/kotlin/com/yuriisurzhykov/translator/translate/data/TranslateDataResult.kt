@@ -1,7 +1,5 @@
 package com.yuriisurzhykov.translator.translate.data
 
-import com.yuriisurzhykov.translator.translate.presentation.TranslateResult
-
 /**
  * Interface to distinguish the result performed by [TranslateClient.translate]
  */

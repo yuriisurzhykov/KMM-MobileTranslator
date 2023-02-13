@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.translator.translate.domain
+package com.yuriisurzhykov.translator.translate.data
 
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.language.data.Language

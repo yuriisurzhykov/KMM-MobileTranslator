@@ -2,10 +2,9 @@ package com.yuriisurzhykov.translator.history.domain
 
 import com.yuriisurzhykov.translator.core.data.Insert
 import com.yuriisurzhykov.translator.core.domain.CommonFlow
-import com.yuriisurzhykov.translator.history.presentation.HistoryPresentationItem
 
-interface HistoryDataSource : Insert<HistoryPresentationItem> {
+interface HistoryDataSource : Insert<HistoryDomainItem> {
 
-    fun getHistory(): CommonFlow<List<HistoryPresentationItem>>
+    fun getHistory(): CommonFlow<List<HistoryDomainItem>>
 
 }

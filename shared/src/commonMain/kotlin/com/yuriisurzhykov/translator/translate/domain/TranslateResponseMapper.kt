@@ -1,18 +1,18 @@
-package com.yuriisurzhykov.translator.translate.presentation
+package com.yuriisurzhykov.translator.translate.domain
 
 import com.yuriisurzhykov.translator.core.Mapper
-import com.yuriisurzhykov.translator.history.presentation.HistoryPresentationItem
+import com.yuriisurzhykov.translator.history.domain.HistoryDomainItem
 import com.yuriisurzhykov.translator.language.data.Language
 import com.yuriisurzhykov.translator.translate.data.TranslateDataResult
 
-interface TranslateResponseMapper : Mapper<TranslateDataResult, HistoryPresentationItem> {
+interface TranslateResponseMapper : Mapper<TranslateDataResult, HistoryDomainItem> {
 
     fun map(
         fromText: String,
         fromLang: Language,
         toLanguage: Language,
         result: TranslateDataResult
-    ): HistoryPresentationItem
+    ): HistoryDomainItem
 
     class Base : TranslateResponseMapper {
         override fun map(input: TranslateDataResult) =
@@ -23,8 +23,8 @@ interface TranslateResponseMapper : Mapper<TranslateDataResult, HistoryPresentat
             fromLang: Language,
             toLanguage: Language,
             result: TranslateDataResult
-        ): HistoryPresentationItem {
-            return HistoryPresentationItem(
+        ): HistoryDomainItem {
+            return HistoryDomainItem(
                 id = null,
                 fromLanguageCode = fromLang.code,
                 fromText = fromText,
