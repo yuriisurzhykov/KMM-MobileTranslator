@@ -23,6 +23,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.yuriisurzhykov.translator.android.R
 import com.yuriisurzhykov.translator.android.core.theme.LightBlue
+import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
 import com.yuriisurzhykov.translator.language.presentation.UiLanguage
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -47,7 +48,7 @@ fun TranslateTextField(
             .clip(RoundedCornerShape(20.dp))
             .gradientSurface()
             .clickable(onClick = onTextFieldClick)
-            .padding(16.dp)
+            .padding(defaultPadding)
     ) {
         AnimatedContent(targetState = toText) { text ->
             if (text.isEmpty() || isTranslating) {
@@ -90,9 +91,9 @@ private fun TranslatedTextField(
 
     Column(modifier = modifier) {
         LanguageDisplay(language = fromLanguage)
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(defaultPadding))
         Text(text = fromText, color = MaterialTheme.colors.onSurface)
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(defaultPadding))
         Row(modifier = Modifier.align(Alignment.End)) {
             IconButton(onClick = { onCopyClick(fromText) }) {
                 Icon(
@@ -109,13 +110,13 @@ private fun TranslatedTextField(
                 )
             }
         }
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(defaultPadding))
         Divider()
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(defaultPadding))
         LanguageDisplay(language = toLanguage)
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(defaultPadding))
         Text(text = toText, color = MaterialTheme.colors.onSurface)
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(defaultPadding))
         Row(modifier = Modifier.align(Alignment.End)) {
             IconButton(onClick = { onCopyClick(toText) }) {
                 Icon(

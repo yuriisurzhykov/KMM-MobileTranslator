@@ -10,4 +10,9 @@
     <string name="label_play_translate">Play translation</string>
     <string name="message_copied_to_clipboard">Copied successfully!</string>
     <string name="label_history">History</string>
+
+    <string name="error_message_service_unavailable">We are sorry, the server is unavailable right now. Try again later.¬</string>
+    <string name="error_message_client_error">We are sorry, out fault. Please, contact with support.</string>
+    <string name="error_message_server_error">We are sorry, server is sick. Please try again later.</string>
+    <string name="error_message_unknown_error">Wow, you are invented new error! Please, contact with support.</string>
 </resources>

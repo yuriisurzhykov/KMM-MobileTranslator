@@ -13,6 +13,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.yuriisurzhykov.translator.android.core.theme.LightBlue
+import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
+import com.yuriisurzhykov.translator.android.core.theme.mediumPadding
 import com.yuriisurzhykov.translator.history.presentation.UiHistoryItem
 
 @Composable
@@ -27,30 +29,30 @@ fun TranslateHistoryItem(
             .clip(RoundedCornerShape(20.dp))
             .gradientSurface()
             .clickable(onClick = onClick)
-            .padding(16.dp)
+            .padding(defaultPadding)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             SmallLanguageIcon(language = item.fromLanguage)
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(defaultPadding))
             Text(
                 text = item.fromText,
                 color = LightBlue,
                 style = MaterialTheme.typography.body2
             )
         }
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(mediumPadding))
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             SmallLanguageIcon(language = item.toLanguage)
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(defaultPadding))
             Text(
                 text = item.fromText,
-                color = MaterialTheme.colors.onPrimary,
+                color = MaterialTheme.colors.onSurface,
                 style = MaterialTheme.typography.body1,
                 fontWeight = FontWeight.Medium
             )

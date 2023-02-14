@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.yuriisurzhykov.translator.android.R
 import com.yuriisurzhykov.translator.android.core.theme.LightBlue
+import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
 import com.yuriisurzhykov.translator.language.presentation.UiLanguage
 import com.yuriisurzhykov.translator.language.presentation.UiLanguageDataStore
 
@@ -44,7 +45,7 @@ fun LanguageDropDown(
         Row(
             modifier = Modifier
                 .clickable(onClick = onClick)
-                .padding(16.dp),
+                .padding(defaultPadding),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = language.emojiLanguageCode, modifier = Modifier.wrapContentWidth())

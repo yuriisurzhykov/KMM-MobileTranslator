@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.yuriisurzhykov.translator.android.core.theme.defaultCornerRadius
 
 @Composable
 fun TranslatorTheme(
@@ -21,7 +22,7 @@ fun TranslatorTheme(
     val colors = if (darkTheme) {
         com.yuriisurzhykov.translator.android.core.theme.darkColors
     } else {
-        com.yuriisurzhykov.translator.android.core.theme.darkColors
+        com.yuriisurzhykov.translator.android.core.theme.lightColors
     }
     val openSans = FontFamily(
         Font(resId = R.font.opensans_light, weight = FontWeight.Light),
@@ -57,8 +58,8 @@ fun TranslatorTheme(
         )
     )
     val shapes = Shapes(
-        small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(4.dp),
+        small = RoundedCornerShape(defaultCornerRadius),
+        medium = RoundedCornerShape(defaultCornerRadius),
         large = RoundedCornerShape(0.dp)
     )
 
