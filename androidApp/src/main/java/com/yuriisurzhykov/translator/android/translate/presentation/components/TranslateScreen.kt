@@ -57,7 +57,7 @@ fun TranslateRoot() {
 fun TranslateScreen(
     state: TranslateState, onEvent: (TranslateEvent) -> Unit
 ) {
-    val context = LocalContext.current
+    TranslateScreenErrorScope(state, onEvent)
     Scaffold(floatingActionButton = {}) { padding ->
         LazyColumn(
             modifier = Modifier
@@ -171,5 +171,26 @@ fun TranslateScreenHistoryHeader(
             text = stringResource(R.string.label_history),
             style = MaterialTheme.typography.h2
         )
+    }
+}
+
+@Composable
+fun TranslateScreenErrorScope(
+    state: TranslateState,
+    onEvent: (TranslateEvent) -> Unit
+) {
+    val context = LocalContext.current
+    LaunchedEffect(key1 = state.error) {
+        val message = when (state.error) {
+            is TranslationError.ServiceNotAvailable -> context.getString(R.string.error_message_service_unavailable)
+            is TranslationError.ServerError -> context.getString(R.string.error_message_server_error)
+            is TranslationError.ClientError -> context.getString(R.string.error_message_client_error)
+            is TranslationError.UnknownError -> context.getString(R.string.error_message_unknown_error)
+            else -> null
+        }
+        message?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            onEvent(OnErrorSeen)
+        }
     }
 }
