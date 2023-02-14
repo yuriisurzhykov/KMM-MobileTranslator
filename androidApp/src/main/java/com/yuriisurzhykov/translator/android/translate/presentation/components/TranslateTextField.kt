@@ -50,7 +50,7 @@ fun TranslateTextField(
             .padding(16.dp)
     ) {
         AnimatedContent(targetState = toText) { text ->
-            if (text.isEmpty() && !isTranslating) {
+            if (text.isEmpty() || isTranslating) {
                 IdleTranslateTextField(
                     fromText = fromText,
                     isTranslating = isTranslating,
