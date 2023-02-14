@@ -1,16 +1,19 @@
 package com.yuriisurzhykov.translator.language.data
 
-sealed class Language(
+enum class Language(
     val code: String,
-    val name: String
+    val countryCode: String,
+    val langName: String
 ) {
-    object English : Language("en", "English")
-    object Arabic : Language("ar", "عربي")
-    object Czech : Language("cs", "Čeština")
-    object Hebrew : Language("he", "עִברִית")
-    object Irish : Language("ga", "Gaeilge")
-    object Korean : Language("ko", "한국인")
-    object Polish : Language("pl", "Polski")
-    object Russian : Language("ru", "Русский")
-    object Ukrainian : Language("uk", "Українська")
+    ENGLISH("en", "GB", "English"),
+    ARABIC("ar", "AE", "عربي"),
+    CHINESE("cn", "CN", "中国人"),
+    CZECH("cs", "CZ", "Čeština"),
+    GERMAN("de", "DE", "Deutsch"),
+    HEBREW("he", "IL", "עִברִית"),
+    IRISH("ga", "IE", "Gaeilge"),
+    KOREAN("ko", "KR", "한국인"),
+    POLISH("pl", "PL", "Polski"),
+    RUSSIAN("ru", "RU", "Русский"),
+    UKRAINIAN("uk", "UA", "Українська")
 }

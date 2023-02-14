@@ -1,14 +1,13 @@
 package com.yuriisurzhykov.translator.history.domain
 
 import com.yuriisurzhykov.translator.core.Mapper
-import com.yuriisurzhykov.translator.history.presentation.HistoryPresentationItem
 import database.HistoryEntity
 
-interface HistoryEntityMapper : Mapper<HistoryEntity, HistoryPresentationItem> {
+interface HistoryEntityMapper : Mapper<HistoryEntity, HistoryDomainItem> {
 
     class Base : HistoryEntityMapper {
-        override fun map(input: HistoryEntity): HistoryPresentationItem {
-            return HistoryPresentationItem(
+        override fun map(input: HistoryEntity): HistoryDomainItem {
+            return HistoryDomainItem(
                 input.id, input.fromLanguageCode, input.fromText, input.toLanguageCode, input.toText
             )
         }
