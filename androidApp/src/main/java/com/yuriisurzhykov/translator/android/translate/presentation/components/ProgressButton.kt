@@ -38,7 +38,7 @@ fun ProgressButton(
                     strokeWidth = 2.dp
                 )
             } else {
-                Text(text = text.uppercase(), color = MaterialTheme.colors.onPrimary)
+                Text(text = text, color = MaterialTheme.colors.onPrimary)
             }
         }
     }
