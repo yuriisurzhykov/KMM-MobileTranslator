@@ -25,7 +25,7 @@ interface RequestPathBuilder {
         }
 
         override fun build(): String {
-            return fullUrl.toString()
+            return fullUrl.toString().also { fullUrl.clear() }
         }
     }
 }

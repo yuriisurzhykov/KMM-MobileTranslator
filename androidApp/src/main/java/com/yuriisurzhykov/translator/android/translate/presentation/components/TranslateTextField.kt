@@ -49,8 +49,8 @@ fun TranslateTextField(
             .clickable(onClick = onTextFieldClick)
             .padding(16.dp)
     ) {
-        AnimatedContent(targetState = toText.isEmpty() && !isTranslating) { shouldShowIdleState ->
-            if (shouldShowIdleState) {
+        AnimatedContent(targetState = toText) { text ->
+            if (text.isEmpty() && !isTranslating) {
                 IdleTranslateTextField(
                     fromText = fromText,
                     isTranslating = isTranslating,

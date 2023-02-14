@@ -5,8 +5,7 @@ enum class Language(
     val countryCode: String,
     val langName: String
 ) {
-    ENGLISH_UK("en-GB", "GB", "English(GB)"),
-    ENGLISH_USA("en-US", "US", "English(US)"),
+    ENGLISH("en", "GB", "English"),
     ARABIC("ar", "AE", "عربي"),
     CZECH("cs", "CZ", "Čeština"),
     GERMAN("de", "DE", "Deutsch"),

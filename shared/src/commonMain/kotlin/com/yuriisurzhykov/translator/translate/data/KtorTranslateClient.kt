@@ -7,7 +7,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.utils.io.errors.*
 
-class KtorTranslateClient constructor(
+class KtorTranslateClient(
     private val httpClient: HttpClient,
     private val requestTransform: ServerRequestBuilder<TranslateRequestModel>
 ) : TranslateClient {
@@ -27,7 +27,7 @@ class KtorTranslateClient constructor(
     private fun checkForResponseError(code: Int) {
         when (code) {
             in 200..299 -> Unit
-            in 400..499 -> throw TranslationError.ClientError()
+            in 400..499 -> throw TranslationError.ClientError(code)
             500 -> throw TranslationError.ServerError()
             else -> throw TranslationError.UnknownError()
         }

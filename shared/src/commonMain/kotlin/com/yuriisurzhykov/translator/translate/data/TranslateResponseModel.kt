@@ -4,5 +4,7 @@ import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
 data class TranslateResponseModel(
-    @SerialName("translatedText") val translatedText: String
+    @SerialName("translation") val translatedText: String,
+    @SerialName("limit_used") val limitedUsers: Int,
+    @SerialName("limit_remaining") val limitRemaining: Int
 )

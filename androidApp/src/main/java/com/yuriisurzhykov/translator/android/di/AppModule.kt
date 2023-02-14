@@ -2,6 +2,8 @@ package com.yuriisurzhykov.translator.android.di
 
 import android.app.Application
 import com.squareup.sqldelight.db.SqlDriver
+import com.yuriisurzhykov.translator.android.core.data.ApiKeyFileProvider
+import com.yuriisurzhykov.translator.core.data.ApiKeyProvider
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.database.TranslateDatabase
 import com.yuriisurzhykov.translator.history.data.SqlDelightHistoryDataSource
@@ -58,5 +60,11 @@ object AppModule {
         remoteClient: TranslateClient, dataSource: HistoryDataSource
     ): TranslateUseCase {
         return TranslateUseCase.Base(remoteClient, dataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiKeyProvider(app: Application): ApiKeyProvider {
+        return ApiKeyFileProvider(app)
     }
 }

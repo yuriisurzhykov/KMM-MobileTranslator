@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
 data class TranslateRequestModel(
-    @SerialName("q") val textToTranslate: String,
-    @SerialName("source") val sourceLanguageCode: String,
-    @SerialName("target") val targetLanguageCode: String
+    @SerialName("text") val textToTranslate: String,
+    @SerialName("source_language") val sourceLanguageCode: String,
+    @SerialName("translation_language") val targetLanguageCode: String
 )

@@ -25,15 +25,12 @@ interface ServerRequestBuilder<T> {
             fromLang: Language,
             toLang: Language
         ): HttpRequestBuilder {
-            val url = pathBuilder.setUrl("https://libretranslate.com/translate")
-                .addPath("q", text)
-                .addPath("source", fromLang.code)
-                .addPath("target", toLang.code)
-                .addPath("api_key", keyProvider.provideApiKey())
+            val url = pathBuilder.setUrl("https://translation-api.translate.com/translate/v1/mt")
                 .build()
             builder.url(url)
-            builder.contentType(ContentType.Application.Json)
+            builder.header("x-api-key", keyProvider.provideApiKey())
             builder.setBody(TranslateRequestModel(text, fromLang.code, toLang.code))
+            builder.contentType(ContentType.Application.Json)
             return builder
         }
     }
