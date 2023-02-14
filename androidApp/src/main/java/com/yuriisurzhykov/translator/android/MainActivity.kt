@@ -9,32 +9,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.yuriisurzhykov.translator.Greeting
+import com.yuriisurzhykov.translator.android.translate.presentation.components.TranslateRoot
+import com.yuriisurzhykov.translator.android.translate.presentation.components.TranslateScreen
+import com.yuriisurzhykov.translator.translate.presentation.TranslateState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TranslatorTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
-                    GreetingView(Greeting().greet())
+                    TranslateRoot()
                 }
             }
         }
     }
 }
 
-@Composable
-fun GreetingView(text: String) {
-    Text(text = text)
-}
-
 @Preview
 @Composable
-fun DefaultPreview() {
-    TranslatorTheme {
-        GreetingView("Hello, Android!")
-    }
+fun TranslateRootPreview() {
+    TranslateScreen(state = TranslateState(), onEvent = {})
 }

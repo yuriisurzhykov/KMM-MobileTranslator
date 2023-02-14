@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open">Open drop down</string>
+    <string name="close">Close drop down</string>
+    <string name="swap_languages">Swap languages</string>
+</resources>
