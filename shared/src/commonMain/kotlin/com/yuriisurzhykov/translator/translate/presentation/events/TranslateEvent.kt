@@ -11,6 +11,16 @@ interface TranslateEvent {
         doAfterUpdate: (TranslateState) -> Unit
     )
 
+    object Translate : TranslateEvent {
+        override fun updateState(
+            state: MutableStateFlow<TranslateState>,
+            doBeforeUpdate: () -> Unit,
+            doAfterUpdate: (TranslateState) -> Unit
+        ) {
+            doAfterUpdate.invoke(state.value)
+        }
+    }
+
     object RecordAudio : TranslateEvent {
         override fun updateState(
             state: MutableStateFlow<TranslateState>,

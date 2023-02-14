@@ -1,6 +1,7 @@
 package com.yuriisurzhykov.translator.android.di
 
 import android.app.Application
+import com.yuriisurzhykov.translator.android.core.data.ApiKeyFileProvider
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.history.domain.HistoryEntityListMapper
 import com.yuriisurzhykov.translator.history.presentation.UiHistoryItemMapper
@@ -23,13 +24,13 @@ object MappersModule {
 
     @Provides
     @Singleton
-    fun provideHistoryEntityListMapper(app: Application): HistoryEntityListMapper {
+    fun provideHistoryEntityListMapper(): HistoryEntityListMapper {
         return HistoryEntityListMapper.Base()
     }
 
     @Provides
     @Singleton
-    fun provideServerRequestBuilder(): ServerRequestBuilder<TranslateRequestModel> {
-        return ServerRequestBuilder.Base()
+    fun provideServerRequestBuilder(app: Application): ServerRequestBuilder<TranslateRequestModel> {
+        return ServerRequestBuilder.Base(ApiKeyFileProvider(app))
     }
 }

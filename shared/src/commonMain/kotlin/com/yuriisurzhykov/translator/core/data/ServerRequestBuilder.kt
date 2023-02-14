@@ -14,20 +14,33 @@ interface ServerRequestBuilder<T> {
         toLang: Language
     ): HttpRequestBuilder
 
-    abstract class Abstract<T> : ServerRequestBuilder<T> {
+    abstract class Abstract<T>(
+        private val pathBuilder: RequestPathBuilder,
+        private val keyProvider: ApiKeyProvider
+    ) :
+        ServerRequestBuilder<T> {
         override fun transform(
             builder: HttpRequestBuilder,
             text: String,
             fromLang: Language,
             toLang: Language
         ): HttpRequestBuilder {
-            builder.url()
+            val url = pathBuilder.setUrl("https://libretranslate.com/translate")
+                .addPath("q", text)
+                .addPath("source", fromLang.code)
+                .addPath("target", toLang.code)
+                .addPath("api_key", keyProvider.provideApiKey())
+                .build()
+            builder.url(url)
             builder.contentType(ContentType.Application.Json)
             builder.setBody(TranslateRequestModel(text, fromLang.code, toLang.code))
             return builder
         }
     }
 
-    class Base : ServerRequestBuilder.Abstract<TranslateRequestModel>()
+    class Base(
+        keyProvider: ApiKeyProvider,
+        pathBuilder: RequestPathBuilder = RequestPathBuilder.Base()
+    ) : Abstract<TranslateRequestModel>(pathBuilder, keyProvider)
 
 }
