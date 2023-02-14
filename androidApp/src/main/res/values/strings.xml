@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open">Open drop down</string>
+    <string name="close">Close drop down</string>
+    <string name="swap_languages">Swap languages</string>
+    <string name="hist_enter_text_to_translate">Enter text to translate</string>
+    <string name="button_text_translate">Translate</string>
+    <string name="button_copy_description">Copy</string>
+    <string name="label_close">Close</string>
+    <string name="label_play_translate">Play translation</string>
+    <string name="message_copied_to_clipboard">Copied successfully!</string>
+    <string name="label_history">History</string>
+
+    <string name="error_message_service_unavailable">We are sorry, the server is unavailable right now. Try again later.¬</string>
+    <string name="error_message_client_error">We are sorry, out fault. Please, contact with support.</string>
+    <string name="error_message_server_error">We are sorry, server is sick. Please try again later.</string>
+    <string name="error_message_unknown_error">Wow, you are invented new error! Please, contact with support.</string>
+    <string name="label_record_audio">Record audio</string>
+</resources>
