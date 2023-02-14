@@ -6,3 +6,4 @@ val defaultPadding = 14.dp
 val mediumPadding = 18.dp
 val largePadding = 24.dp
 val defaultCornerRadius = 4.dp
+val floatingButtonSize = 70.dp

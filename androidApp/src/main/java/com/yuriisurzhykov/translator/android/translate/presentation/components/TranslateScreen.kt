@@ -7,9 +7,7 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -17,19 +15,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.yuriisurzhykov.translator.android.R
 import com.yuriisurzhykov.translator.android.core.presentation.Routes
 import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
+import com.yuriisurzhykov.translator.android.core.theme.floatingButtonSize
 import com.yuriisurzhykov.translator.android.translate.presentation.AndroidTranslateViewModel
 import com.yuriisurzhykov.translator.translate.data.TranslationError
 import com.yuriisurzhykov.translator.translate.presentation.TranslateState
@@ -39,16 +41,29 @@ import com.yuriisurzhykov.translator.translate.presentation.events.*
 fun TranslateRoot() {
     val navigationController = rememberNavController()
     NavHost(
-        navController = navigationController,
-        startDestination = Routes.TRANSLATE.routeName
+        navController = navigationController, startDestination = Routes.TRANSLATE.routeName
     ) {
         composable(route = Routes.TRANSLATE.routeName) {
             val viewModel = hiltViewModel<AndroidTranslateViewModel>()
             val state by viewModel.translateStateFlow().collectAsState()
             TranslateScreen(
-                state = state,
-                onEvent = viewModel::sendEvent
+                state = state, onEvent = { event ->
+                    if (event is TranslateEvent.RecordAudio) {
+                        navigationController.navigate(Routes.VOICE_TO_TEXT.routeName + "/${state.fromLanguage.language.code}")
+                    } else {
+                        viewModel.sendEvent(event)
+                    }
+                }
             )
+        }
+        composable(
+            route = Routes.VOICE_TO_TEXT.routeName + "/{languageCode}",
+            arguments = listOf(navArgument("languageCode") {
+                type = NavType.StringType
+                defaultValue = "en"
+            })
+        ) {
+            Text(text = "Voice-to-text")
         }
     }
 }
@@ -58,7 +73,19 @@ fun TranslateScreen(
     state: TranslateState, onEvent: (TranslateEvent) -> Unit
 ) {
     TranslateScreenErrorScope(state, onEvent)
-    Scaffold(floatingActionButton = {}) { padding ->
+    Scaffold(floatingActionButtonPosition = FabPosition.Center, floatingActionButton = {
+        FloatingActionButton(
+            onClick = { onEvent(TranslateEvent.RecordAudio) },
+            backgroundColor = MaterialTheme.colors.primary,
+            contentColor = MaterialTheme.colors.onPrimary,
+            modifier = Modifier.size(floatingButtonSize)
+        ) {
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_microphone),
+                contentDescription = stringResource(R.string.label_record_audio)
+            )
+        }
+    }) { padding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -143,9 +170,7 @@ fun TranslateScreenInputs(
         onCopyClick = { text ->
             clipboardManager.setText(buildAnnotatedString { append(text) })
             Toast.makeText(
-                context,
-                context.getString(R.string.message_copied_to_clipboard),
-                Toast.LENGTH_LONG
+                context, context.getString(R.string.message_copied_to_clipboard), Toast.LENGTH_LONG
             ).show()
         },
         onCloseClick = { onEvent(CloseTranslation) },
@@ -168,8 +193,7 @@ fun TranslateScreenHistoryHeader(
 ) {
     if (state.history.isNotEmpty()) {
         Text(
-            text = stringResource(R.string.label_history),
-            style = MaterialTheme.typography.h2
+            text = stringResource(R.string.label_history), style = MaterialTheme.typography.h2
         )
     }
 }
