@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 
 class SqlDelightHistoryDataSource(
-    private val cacheToPresentationMapper: HistoryEntityListMapper,
+    private val mapper: HistoryEntityListMapper,
     db: TranslateDatabase
 ) : HistoryDataSource {
 
@@ -35,7 +35,7 @@ class SqlDelightHistoryDataSource(
             .asFlow()
             .mapToList()
             .map { list ->
-                cacheToPresentationMapper.map(list)
+                mapper.map(list)
             }
             .asCommonFlow()
     }

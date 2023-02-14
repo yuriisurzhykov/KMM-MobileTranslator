@@ -2,10 +2,6 @@ package com.yuriisurzhykov.translator.translate.data
 
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.language.data.Language
-import com.yuriisurzhykov.translator.translate.data.TranslateClient
-import com.yuriisurzhykov.translator.translate.data.TranslateRequestModel
-import com.yuriisurzhykov.translator.translate.data.TranslateDataResult
-import com.yuriisurzhykov.translator.translate.data.TranslationError
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -20,7 +16,7 @@ class KtorTranslateClient constructor(
         text: String, fromLang: Language, toLang: Language
     ): TranslateDataResult {
         val result = try {
-            httpClient.post { requestTransform.transform(this) }
+            httpClient.post { requestTransform.transform(this, text, fromLang, toLang) }
         } catch (e: IOException) {
             throw TranslationError.ServiceNotAvailable()
         }
