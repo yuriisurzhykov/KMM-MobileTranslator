@@ -2,6 +2,7 @@ package com.yuriisurzhykov.translator.translate.data
 
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.language.data.Language
+import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*

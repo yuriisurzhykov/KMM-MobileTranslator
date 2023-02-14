@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.translator.translate.data
+package com.yuriisurzhykov.translator.translate.data.remote
 
 import kotlinx.serialization.SerialName
 

@@ -11,7 +11,7 @@ import com.yuriisurzhykov.translator.history.domain.HistoryDataSource
 import com.yuriisurzhykov.translator.history.domain.HistoryEntityListMapper
 import com.yuriisurzhykov.translator.translate.data.KtorTranslateClient
 import com.yuriisurzhykov.translator.translate.data.TranslateClient
-import com.yuriisurzhykov.translator.translate.data.TranslateRequestModel
+import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
 import com.yuriisurzhykov.translator.translate.data.local.DatabaseDriverFactory
 import com.yuriisurzhykov.translator.translate.data.remote.HttpClientFactory
 import com.yuriisurzhykov.translator.translate.domain.TranslateUseCase

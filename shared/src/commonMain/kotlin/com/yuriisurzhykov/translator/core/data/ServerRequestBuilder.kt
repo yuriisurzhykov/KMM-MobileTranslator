@@ -1,7 +1,7 @@
 package com.yuriisurzhykov.translator.core.data
 
 import com.yuriisurzhykov.translator.language.data.Language
-import com.yuriisurzhykov.translator.translate.data.TranslateRequestModel
+import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
 import io.ktor.client.request.*
 import io.ktor.http.*
 

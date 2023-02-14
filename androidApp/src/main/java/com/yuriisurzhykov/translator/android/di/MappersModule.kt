@@ -4,7 +4,7 @@ import com.yuriisurzhykov.translator.core.data.ApiKeyProvider
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.history.domain.HistoryEntityListMapper
 import com.yuriisurzhykov.translator.history.presentation.UiHistoryItemMapper
-import com.yuriisurzhykov.translator.translate.data.TranslateRequestModel
+import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
