@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalComposeUiApi::class)
+
 package com.yuriisurzhykov.translator.android.translate.presentation.components
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
@@ -7,12 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.yuriisurzhykov.translator.android.R
 import com.yuriisurzhykov.translator.android.core.presentation.Routes
 import com.yuriisurzhykov.translator.android.translate.presentation.AndroidTranslateViewModel
 import com.yuriisurzhykov.translator.translate.presentation.TranslateState
@@ -22,6 +31,7 @@ import com.yuriisurzhykov.translator.translate.presentation.events.*
 fun TranslateScreen(
     state: TranslateState, onEvent: (TranslateEvent) -> Unit
 ) {
+    val context = LocalContext.current
     Scaffold(floatingActionButton = {}) { padding ->
         LazyColumn(
             modifier = Modifier
@@ -55,6 +65,38 @@ fun TranslateScreen(
                         onSelectLanguage = { onEvent(ChooseToLanguage(it)) }
                     )
                 }
+            }
+            item {
+                val clipboardManager = LocalClipboardManager.current
+                val keyboardController = LocalSoftwareKeyboardController.current
+                TranslateTextField(
+                    fromText = state.fromText,
+                    toText = state.toText,
+                    isTranslating = state.isTranslating,
+                    fromLanguage = state.fromLanguage,
+                    toLanguage = state.toLanguage,
+                    onTranslateClick = {
+                        keyboardController?.hide()
+                        onEvent(TranslateEvent.Translate)
+                    },
+                    onTextChange = {
+                        onEvent(ChangeTranslationText(it))
+                    },
+                    onCopyClick = { text ->
+                        clipboardManager.setText(buildAnnotatedString { append(text) })
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.message_copied_to_clipboard),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    },
+                    onCloseClick = { onEvent(CloseTranslation) },
+                    onSpeakerClick = { /*onEvent(TranslateEvent.RecordAudio)*/ },
+                    onTextFieldClick = {
+                        onEvent(EditTranslation)
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         }
     }
