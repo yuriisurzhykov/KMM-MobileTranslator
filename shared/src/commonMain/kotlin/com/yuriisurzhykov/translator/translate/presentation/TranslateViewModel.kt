@@ -30,7 +30,7 @@ interface TranslateViewModel {
         private val mutableState = MutableStateFlow(TranslateState())
         private val state =
             combine(mutableState, historyDataSource.getHistory()) { state, history ->
-                if (state.history.isNotEmpty()) {
+                if (state.history != history) {
                     state.copy(history = history.map { historyItemMapper.map(it) })
                 } else state
             }.stateIn(
