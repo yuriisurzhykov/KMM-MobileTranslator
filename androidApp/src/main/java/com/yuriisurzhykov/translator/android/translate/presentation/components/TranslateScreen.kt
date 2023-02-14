@@ -2,6 +2,7 @@
 
 package com.yuriisurzhykov.translator.android.translate.presentation.components
 
+import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -69,6 +70,7 @@ fun TranslateScreen(
             item {
                 val clipboardManager = LocalClipboardManager.current
                 val keyboardController = LocalSoftwareKeyboardController.current
+                val tts = rememberTextToSpeech()
                 TranslateTextField(
                     fromText = state.fromText,
                     toText = state.toText,
@@ -91,7 +93,12 @@ fun TranslateScreen(
                         ).show()
                     },
                     onCloseClick = { onEvent(CloseTranslation) },
-                    onSpeakerClick = { /*onEvent(TranslateEvent.RecordAudio)*/ },
+                    onSpeakerClick = {
+                        tts.language = state.toLanguage.toLocale()
+                        tts.speak(
+                            state.toText, TextToSpeech.QUEUE_FLUSH, null, null
+                        )
+                    },
                     onTextFieldClick = {
                         onEvent(EditTranslation)
                     },

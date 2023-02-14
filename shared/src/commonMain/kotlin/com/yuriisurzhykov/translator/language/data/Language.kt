@@ -7,6 +7,7 @@ enum class Language(
 ) {
     ENGLISH("en", "GB", "English"),
     ARABIC("ar", "AE", "عربي"),
+    CHINESE("cn", "CN", "中国人"),
     CZECH("cs", "CZ", "Čeština"),
     GERMAN("de", "DE", "Deutsch"),
     HEBREW("he", "IL", "עִברִית"),
