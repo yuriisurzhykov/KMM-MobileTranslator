@@ -6,6 +6,6 @@ import com.yuriisurzhykov.translator.language.data.Language
 class LanguageCodeMapper : Mapper.NotNullMapper<String, Language> {
 
     override fun map(input: String): Language {
-        return Language.values().find { input == it.code } ?: Language.ENGLISH
+        return Language.values().find { input == it.code } ?: Language.ENGLISH_USA
     }
 }

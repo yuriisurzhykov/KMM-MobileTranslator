@@ -8,6 +8,6 @@ actual class UiLanguageMapper(
 ) : Mapper<Language, UiLanguage> {
 
     override fun map(input: Language): UiLanguage {
-        return UiLanguage(input, countryCodeEmojiMapper.map(input.code))
+        return UiLanguage(input, countryCodeEmojiMapper.map(input.countryCode))
     }
 }

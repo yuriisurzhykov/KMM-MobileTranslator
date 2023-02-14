@@ -2,16 +2,18 @@ package com.yuriisurzhykov.translator.language.data
 
 enum class Language(
     val code: String,
+    val countryCode: String,
     val langName: String
 ) {
-    ENGLISH("en", "English"),
-    ARABIC("ar", "عربي"),
-    CZECH("cs", "Čeština"),
-    GERMAN("de", "Deutsch"),
-    HEBREW("he", "עִברִית"),
-    IRISH("ga", "Gaeilge"),
-    KOREAN("ko", "한국인"),
-    POLISH("pl", "Polski"),
-    RUSSIAN("ru", "Русский"),
-    UKRAINIAN("uk", "Українська")
+    ENGLISH_UK("en-GB", "GB", "English(GB)"),
+    ENGLISH_USA("en-US", "US", "English(US)"),
+    ARABIC("ar", "AE", "عربي"),
+    CZECH("cs", "CZ", "Čeština"),
+    GERMAN("de", "DE", "Deutsch"),
+    HEBREW("he", "IL", "עִברִית"),
+    IRISH("ga", "IE", "Gaeilge"),
+    KOREAN("ko", "KR", "한국인"),
+    POLISH("pl", "PL", "Polski"),
+    RUSSIAN("ru", "RU", "Русский"),
+    UKRAINIAN("uk", "UA", "Українська")
 }

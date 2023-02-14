@@ -3,6 +3,7 @@ package com.yuriisurzhykov.translator.android.translate.presentation.components
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -17,8 +18,8 @@ fun LanguageDropDownItem(
     language: UiLanguage, onClick: () -> Unit, modifier: Modifier = Modifier
 ) {
     DropdownMenuItem(onClick = onClick, modifier = modifier) {
-        Text(text = language.emojiLanguageCode, modifier = Modifier.size(40.dp))
+        Text(text = language.emojiLanguageCode, modifier = Modifier.wrapContentWidth())
         Spacer(modifier = Modifier.width(16.dp))
-        Text(text = language.language.langName.lowercase().capitalize(Locale.current))
+        Text(text = language.language.langName)
     }
 }
