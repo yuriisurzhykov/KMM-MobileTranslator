@@ -22,7 +22,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.yuriisurzhykov.translator.android.R
-import com.yuriisurzhykov.translator.android.core.theme.LightBlue
+import com.yuriisurzhykov.translator.android.core.theme.AccentLight
 import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
 import com.yuriisurzhykov.translator.language.presentation.UiLanguage
 
@@ -99,14 +99,14 @@ private fun TranslatedTextField(
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_copy),
                     contentDescription = stringResource(id = R.string.button_copy_description),
-                    tint = LightBlue
+                    tint = AccentLight
                 )
             }
             IconButton(onClick = onCloseClick) {
                 Icon(
                     imageVector = Icons.Rounded.Close,
                     contentDescription = stringResource(id = R.string.label_close),
-                    tint = LightBlue
+                    tint = AccentLight
                 )
             }
         }
@@ -122,14 +122,14 @@ private fun TranslatedTextField(
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_copy),
                     contentDescription = stringResource(id = R.string.button_copy_description),
-                    tint = LightBlue
+                    tint = AccentLight
                 )
             }
             IconButton(onClick = onSpeakerClick) {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_speaker),
                     contentDescription = stringResource(id = R.string.label_play_translate),
-                    tint = LightBlue
+                    tint = AccentLight
                 )
             }
         }
@@ -162,7 +162,7 @@ private fun IdleTranslateTextField(
         if (fromText.isEmpty() && !isFocused) {
             Text(
                 text = stringResource(R.string.hist_enter_text_to_translate),
-                color = LightBlue
+                color = AccentLight
             )
         }
         ProgressButton(
