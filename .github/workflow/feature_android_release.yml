@@ -1,4 +1,4 @@
-name: Release Build
+name: Feature build for android
 on:
   push:
     tags:
