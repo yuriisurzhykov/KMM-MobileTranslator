@@ -8,7 +8,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.yuriisurzhykov.translator.Greeting
 import com.yuriisurzhykov.translator.android.translate.presentation.components.TranslateRoot
 import com.yuriisurzhykov.translator.android.translate.presentation.components.TranslateScreen
 import com.yuriisurzhykov.translator.translate.presentation.TranslateState
@@ -21,7 +20,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             TranslatorTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
                 ) {
                     TranslateRoot()
                 }

@@ -16,4 +16,5 @@
     <string name="error_message_server_error">We are sorry, server is sick. Please try again later.</string>
     <string name="error_message_unknown_error">Wow, you are invented new error! Please, contact with support.</string>
     <string name="label_record_audio">Record audio</string>
+    <string name="app_name">TranslaQuick</string>
 </resources>
