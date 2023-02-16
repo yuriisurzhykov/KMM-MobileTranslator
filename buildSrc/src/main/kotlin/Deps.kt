@@ -21,6 +21,8 @@ object Deps {
     // KOTLIN DATE TIME
     private const val dateTimeVersion = "0.4.0"
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion"
+    private const val kotlinSerializationVersion = "1.3.1"
+    const val kotlinSerializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion"
 
     // HILT
     private const val hiltVersion = "2.42"
@@ -75,4 +77,12 @@ object Deps {
     const val composeTestManifest = "androidx.compose.ui:ui-test-manifest:$composeVersion"
 
     const val hiltTesting = "com.google.dagger:hilt-android-testing:$hiltVersion"
+
+    //FIREBASE
+    private const val firebaseBoomVersion = "31.2.1"
+    const val crashlyticsGradlePlugin = "com.google.firebase:firebase-crashlytics-gradle:2.9.4"
+    const val firebaseBoom = "com.google.firebase:firebase-bom:$firebaseBoomVersion"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
+
 }
