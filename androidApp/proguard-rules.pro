@@ -4,3 +4,7 @@
 -keepclassmembernames class com.yuriisurzhykov.translator.** {
     *;
 }
+
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
