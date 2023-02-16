@@ -5,14 +5,14 @@ import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 import com.yuriisurzhykov.translator.core.presentation.Colors
 
-val AccentViolet = Color(Colors.AccentViolet)
-val LightBlue = Color(Colors.LightBlue)
-val LightBlueGrey = Color(Colors.LightBlueGrey)
+val Accent = Color(0xFF5CC5A4)
+val AccentLight = Color(0xFF85A08F)
+val LightBlueGrey = Color(0xFFF6F6F4)
 val TextBlack = Color(Colors.TextBlack)
-val DarkGrey = Color(Colors.DarkGrey)
+val DarkGrey = Color(0xFF282B31)
 
 val lightColors = lightColors(
-    primary = AccentViolet,
+    primary = Accent,
     background = LightBlueGrey,
     onPrimary = Color.White,
     onBackground = TextBlack,
@@ -21,7 +21,7 @@ val lightColors = lightColors(
 )
 
 val darkColors = darkColors(
-    primary = AccentViolet,
+    primary = Accent,
     background = DarkGrey,
     onPrimary = Color.White,
     onBackground = Color.White,

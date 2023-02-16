@@ -12,7 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.yuriisurzhykov.translator.android.core.theme.LightBlue
+import com.yuriisurzhykov.translator.android.core.theme.AccentLight
 import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
 import com.yuriisurzhykov.translator.android.core.theme.mediumPadding
 import com.yuriisurzhykov.translator.history.presentation.UiHistoryItem
@@ -39,7 +39,7 @@ fun TranslateHistoryItem(
             Spacer(modifier = Modifier.width(defaultPadding))
             Text(
                 text = item.fromText,
-                color = LightBlue,
+                color = AccentLight,
                 style = MaterialTheme.typography.body2
             )
         }
@@ -51,7 +51,7 @@ fun TranslateHistoryItem(
             SmallLanguageIcon(language = item.toLanguage)
             Spacer(modifier = Modifier.width(defaultPadding))
             Text(
-                text = item.fromText,
+                text = item.toText,
                 color = MaterialTheme.colors.onSurface,
                 style = MaterialTheme.typography.body1,
                 fontWeight = FontWeight.Medium

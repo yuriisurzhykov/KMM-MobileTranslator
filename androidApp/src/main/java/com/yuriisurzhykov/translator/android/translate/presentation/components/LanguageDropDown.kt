@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.yuriisurzhykov.translator.android.R
-import com.yuriisurzhykov.translator.android.core.theme.LightBlue
+import com.yuriisurzhykov.translator.android.core.theme.AccentLight
 import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
 import com.yuriisurzhykov.translator.language.presentation.UiLanguage
 import com.yuriisurzhykov.translator.language.presentation.UiLanguageDataStore
@@ -52,13 +52,13 @@ fun LanguageDropDown(
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = language.language.langName,
-                color = LightBlue
+                color = AccentLight
             )
             Icon(
                 imageVector = if (isOpen) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
                 contentDescription = if (isOpen) stringResource(id = R.string.close)
                 else stringResource(id = R.string.open),
-                tint = LightBlue,
+                tint = AccentLight,
                 modifier = Modifier.size(30.dp)
             )
         }
