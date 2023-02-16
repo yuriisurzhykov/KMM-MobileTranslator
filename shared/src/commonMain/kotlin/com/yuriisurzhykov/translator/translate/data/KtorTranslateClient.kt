@@ -3,10 +3,12 @@ package com.yuriisurzhykov.translator.translate.data
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.language.data.Language
 import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
+import com.yuriisurzhykov.translator.translate.data.remote.TranslateResponseModel
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.utils.io.errors.*
+import kotlinx.serialization.json.Json
 
 class KtorTranslateClient(
     private val httpClient: HttpClient,
@@ -22,7 +24,9 @@ class KtorTranslateClient(
             throw TranslationError.ServiceNotAvailable()
         }
         checkForResponseError(result.status.value)
-        return TranslateDataResult.TranslationSuccess(result.body())
+        return TranslateDataResult.TranslationSuccess(
+            Json.decodeFromString(TranslateResponseModel.serializer(), result.body())
+        )
     }
 
     private fun checkForResponseError(code: Int) {

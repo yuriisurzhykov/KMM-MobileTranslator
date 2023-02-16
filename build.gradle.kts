@@ -9,6 +9,8 @@ buildscript {
         classpath(Deps.androidBuildTools)
         classpath(Deps.sqlDelightGradlePlugin)
         classpath(Deps.hiltGradlePlugin)
+        classpath(Deps.crashlyticsGradlePlugin)
+        classpath("com.google.gms:google-services:4.3.15")
     }
 }
 

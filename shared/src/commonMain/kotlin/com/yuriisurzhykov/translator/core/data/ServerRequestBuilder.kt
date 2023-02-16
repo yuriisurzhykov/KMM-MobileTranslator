@@ -4,6 +4,7 @@ import com.yuriisurzhykov.translator.language.data.Language
 import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
 import io.ktor.client.request.*
 import io.ktor.http.*
+import kotlinx.serialization.json.Json
 
 interface ServerRequestBuilder<T> {
 
@@ -29,7 +30,12 @@ interface ServerRequestBuilder<T> {
                 .build()
             builder.url(url)
             builder.header("x-api-key", keyProvider.provideApiKey())
-            builder.setBody(TranslateRequestModel(text, fromLang.code, toLang.code))
+            builder.setBody(
+                Json.encodeToString(
+                    TranslateRequestModel.serializer(),
+                    TranslateRequestModel(text, fromLang.code, toLang.code)
+                )
+            )
             builder.contentType(ContentType.Application.Json)
             return builder
         }

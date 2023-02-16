@@ -1,8 +1,13 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
     kotlin("plugin.serialization") version Deps.kotlinVersion
 }
 
@@ -15,6 +20,18 @@ android {
         targetSdk = ProjectConfig.Android.targetVersion
         versionCode = 1
         versionName = "1.0"
+    }
+    signingConfigs {
+        create("release") {
+            val properties = Properties()
+            FileInputStream(file("signing.properties")).use { stream ->
+                properties.load(stream)
+            }
+            storeFile = file(properties.getProperty("keystoreFile"))
+            storePassword = properties.getProperty("keystorePassword").toString()
+            keyAlias = properties.getProperty("keyAlias").toString()
+            keyPassword = properties.getProperty("keyPassword").toString()
+        }
     }
     buildFeatures {
         compose = true
@@ -29,7 +46,11 @@ android {
     }
     buildTypes {
         getByName("release") {
+            isDebuggable = false
             isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }
@@ -52,6 +73,9 @@ dependencies {
     implementation(Deps.hiltNavigationCompose)
 
     implementation(Deps.ktorAndroid)
+
+    implementation(platform(Deps.firebaseBoom))
+    implementation(Deps.firebaseCrashlytics)
 
     androidTestImplementation(Deps.testRunner)
     androidTestImplementation(Deps.jUnit)
