@@ -13,6 +13,12 @@ jobs:
         id: var
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
+      - name: Configure tokens
+        run: |
+          echo "$TRANSLATE_API_KEY" > androidApp/src/main/assets/apikey.base64
+        env:
+          TRANSLATE_API_KEY: ${{ secrets.TRANSLATE_API_KEY }}
+
       - name: Configure Keystore
         run: |
           echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
