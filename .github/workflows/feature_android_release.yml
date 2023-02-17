@@ -15,7 +15,7 @@ jobs:
 
       - name: Configure tokens
         run: |
-          echo "$TRANSLATE_API_KEY" > androidApp/src/main/assets/apikey.base64
+          echo "$TRANSLATE_API_KEY" >> androidApp/src/main/assets/apikey.base64
         env:
           TRANSLATE_API_KEY: ${{ secrets.TRANSLATE_API_KEY }}
 
