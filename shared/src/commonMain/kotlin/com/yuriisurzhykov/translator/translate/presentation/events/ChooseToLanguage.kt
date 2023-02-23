@@ -3,6 +3,7 @@ package com.yuriisurzhykov.translator.translate.presentation.events
 import com.yuriisurzhykov.translator.language.presentation.UiLanguage
 import com.yuriisurzhykov.translator.translate.presentation.TranslateState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 
 data class ChooseToLanguage(val language: UiLanguage) : TranslateEvent {
@@ -12,7 +13,16 @@ data class ChooseToLanguage(val language: UiLanguage) : TranslateEvent {
         doAfterUpdate: (TranslateState) -> Unit
     ) {
         val newState =
-            state.updateAndGet { it.copy(isChoosingToLanguage = false, toLanguage = language) }
+            state.updateAndGet {
+                val fromLanguage =
+                    if (it.fromLanguage == language) it.toLanguage else it.fromLanguage
+                val toLanguage = language
+                it.copy(
+                    isChoosingToLanguage = false,
+                    fromLanguage = fromLanguage,
+                    toLanguage = toLanguage
+                )
+            }
         doAfterUpdate.invoke(newState)
     }
 }

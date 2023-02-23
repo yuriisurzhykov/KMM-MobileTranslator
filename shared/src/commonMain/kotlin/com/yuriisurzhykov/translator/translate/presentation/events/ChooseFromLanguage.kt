@@ -11,6 +11,14 @@ data class ChooseFromLanguage(val language: UiLanguage) : TranslateEvent {
         doBeforeUpdate: () -> Unit,
         doAfterUpdate: (TranslateState) -> Unit
     ) {
-        state.update { it.copy(isChoosingFromLanguage = false, fromLanguage = language) }
+        state.update {
+            val fromLanguage = language
+            val toLanguage = if (it.toLanguage == language) it.fromLanguage else it.toLanguage
+            it.copy(
+                isChoosingFromLanguage = false,
+                fromLanguage = fromLanguage,
+                toLanguage = toLanguage
+            )
+        }
     }
 }
