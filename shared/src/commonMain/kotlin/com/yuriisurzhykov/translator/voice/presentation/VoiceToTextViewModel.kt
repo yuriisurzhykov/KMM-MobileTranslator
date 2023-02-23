@@ -53,4 +53,7 @@ interface VoiceToTextViewModel {
             event.handleEvent(mutableState, parser)
         }
     }
+
+    class Base(parser: VoiceToTextParser, coroutineScope: CoroutineScope) :
+        Abstract(parser, coroutineScope)
 }
