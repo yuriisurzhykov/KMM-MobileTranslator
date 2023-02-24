@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="error_speech_recognition_unavailable">Speech recognition is not available on device!</string>
+    <string name="error_recognition_error">Error occurred white recording: %s</string>
 </resources>

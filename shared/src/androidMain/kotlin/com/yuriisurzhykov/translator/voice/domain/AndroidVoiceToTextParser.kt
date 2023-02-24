@@ -17,6 +17,7 @@ class AndroidVoiceToTextParser(
 ) : VoiceToTextParser, RecognitionListener {
 
     private val mState = MutableStateFlow(VoiceParseState())
+    private val state = mState.asCommonStateFlow()
     private val recognizer = SpeechRecognizer.createSpeechRecognizer(app)
 
     override fun startListening(languageCode: String) {
@@ -49,12 +50,10 @@ class AndroidVoiceToTextParser(
     }
 
     override fun reset() {
-        mState.update { VoiceParseState() }
+        mState.value = VoiceParseState()
     }
 
-    override fun state(): CommonStateFlow<VoiceParseState> {
-        return mState.asCommonStateFlow()
-    }
+    override fun state(): CommonStateFlow<VoiceParseState> = state
 
     override fun onReadyForSpeech(params: Bundle?) {
         mState.update { it.copy(error = null) }
@@ -74,11 +73,19 @@ class AndroidVoiceToTextParser(
     }
 
     override fun onError(error: Int) {
-        mState.update { it.copy(error = "Error: $error") }
+        if (error == SpeechRecognizer.ERROR_CLIENT) {
+            return
+        }
+        mState.update {
+            it.copy(
+                error = app.getString(R.string.error_recognition_error).format(error)
+            )
+        }
     }
 
     override fun onResults(results: Bundle?) {
-        results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+        results
+            ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             ?.getOrNull(0)
             ?.let { text ->
                 mState.update { it.copy(result = text) }

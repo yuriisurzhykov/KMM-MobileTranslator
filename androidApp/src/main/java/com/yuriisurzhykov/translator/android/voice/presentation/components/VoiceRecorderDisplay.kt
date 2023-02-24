@@ -1,5 +1,6 @@
 package com.yuriisurzhykov.translator.android.voice.presentation.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -7,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
@@ -20,14 +23,17 @@ import androidx.compose.ui.unit.dp
 import com.yuriisurzhykov.translator.android.TranslatorTheme
 import com.yuriisurzhykov.translator.android.core.theme.defaultCornerRadius
 import com.yuriisurzhykov.translator.android.translate.presentation.components.gradientSurface
+import com.yuriisurzhykov.translator.core.domain.CommonMutableStateFlow
 import kotlin.random.Random
 
 @Composable
 fun VoiceRecorderDisplay(
-    powerRatios: List<Float>,
+    powerRatiosFlow: CommonMutableStateFlow<List<Float>>,
     modifier: Modifier = Modifier
 ) {
     val primaryColor = MaterialTheme.colors.primary
+    val powerRatios by powerRatiosFlow.collectAsState()
+    Log.e("TAG", "VoiceRecorderDisplay: rerender power ratios: ${powerRatios.joinToString("\t")}")
     Box(
         modifier = modifier
             .shadow(
@@ -67,20 +73,20 @@ fun VoiceRecorderDisplay(
                         }
                 }
             }
-    ) {
-    }
+    )
 }
 
+/*
 @Preview
 @Composable
 fun VoiceRecorderDisplayPreview() {
     TranslatorTheme {
         VoiceRecorderDisplay(
-            powerRatios = (0..100).map {
+            powerRatios = (0..20).map {
                 Random.nextFloat()
             }, modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
         )
     }
-}
+}*/

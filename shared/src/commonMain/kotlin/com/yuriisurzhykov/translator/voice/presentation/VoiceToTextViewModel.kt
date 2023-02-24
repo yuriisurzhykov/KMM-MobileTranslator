@@ -24,9 +24,13 @@ interface VoiceToTextViewModel {
             .combine(parser.state()) { state, voiceResult ->
                 state.copy(
                     spokenText = voiceResult.result,
-                    recordError = voiceResult.error,
+                    recordError = if (state.canRecord) {
+                        voiceResult.error
+                    } else {
+                        "Can't record without permissions!"
+                    },
                     displayState = when {
-                        voiceResult.error != null -> DisplayState.Error()
+                        state.canRecord.not() || voiceResult.error != null -> DisplayState.Error()
                         voiceResult.result.isNotBlank() && !voiceResult.isSpeaking -> DisplayState.DisplayingResults()
                         voiceResult.isSpeaking -> DisplayState.Speaking()
                         else -> DisplayState.WaitingToTalk()

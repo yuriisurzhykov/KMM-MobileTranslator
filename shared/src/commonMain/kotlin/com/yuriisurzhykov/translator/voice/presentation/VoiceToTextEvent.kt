@@ -34,6 +34,7 @@ interface VoiceToTextEvent {
             state: MutableStateFlow<VoiceToTextState>,
             parser: VoiceToTextParser
         ) {
+            state.update { it.copy(powerRatios = emptyList()) }
             parser.cancel()
             if (state.value.displayState is DisplayState.Speaking) {
                 parser.stopListening()
