@@ -11,6 +11,8 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		A58AA38029A477F50010F9BA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AA37F29A477F50010F9BA /* Colors.swift */; };
+		A58AA38629A47F240010F9BA /* LanguageDropDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AA38529A47F240010F9BA /* LanguageDropDownItem.swift */; };
 		C35DFC78425DCCA302785081 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6E0CFE3F3031A8E72B3BD0B /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,9 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A58AA37C29A477690010F9BA /* iosAppDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iosAppDebug.entitlements; sourceTree = "<group>"; };
+		A58AA37F29A477F50010F9BA /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		A58AA38529A47F240010F9BA /* LanguageDropDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropDownItem.swift; sourceTree = "<group>"; };
 		D6E0CFE3F3031A8E72B3BD0B /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4280E43D3E4F2A7CF1F3646 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		F90ADEC99198EEF1E3B89405 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +86,9 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				A58AA38129A47ECA0010F9BA /* translate */,
+				A58AA37D29A477B60010F9BA /* core */,
+				A58AA37C29A477690010F9BA /* iosAppDebug.entitlements */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -104,8 +112,47 @@
 				F90ADEC99198EEF1E3B89405 /* Pods-iosApp.debug.xcconfig */,
 				E4280E43D3E4F2A7CF1F3646 /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A58AA37D29A477B60010F9BA /* core */ = {
+			isa = PBXGroup;
+			children = (
+				A58AA37E29A477BC0010F9BA /* presentation */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		A58AA37E29A477BC0010F9BA /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A58AA37F29A477F50010F9BA /* Colors.swift */,
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
+		A58AA38129A47ECA0010F9BA /* translate */ = {
+			isa = PBXGroup;
+			children = (
+				A58AA38329A47EE50010F9BA /* presentation */,
+			);
+			path = translate;
+			sourceTree = "<group>";
+		};
+		A58AA38329A47EE50010F9BA /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A58AA38429A47EEF0010F9BA /* components */,
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
+		A58AA38429A47EEF0010F9BA /* components */ = {
+			isa = PBXGroup;
+			children = (
+				A58AA38529A47F240010F9BA /* LanguageDropDownItem.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +289,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				A58AA38629A47F240010F9BA /* LanguageDropDownItem.swift in Sources */,
+				A58AA38029A477F50010F9BA /* Colors.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,23 +419,33 @@
 			baseConfigurationReference = F90ADEC99198EEF1E3B89405 /* Pods-iosApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iosApp/iosAppDebug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BZ5PN86HT8;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TranslaQuick;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					shared,
+					"-ObjC",
+					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuriisurzhykov.translatoriOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuriisurzhykov.translator.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -397,23 +456,32 @@
 			baseConfigurationReference = E4280E43D3E4F2A7CF1F3646 /* Pods-iosApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BZ5PN86HT8;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TranslaQuick;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					shared,
+					"-ObjC",
+					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuriisurzhykov.translatoriOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuriisurzhykov.translator.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

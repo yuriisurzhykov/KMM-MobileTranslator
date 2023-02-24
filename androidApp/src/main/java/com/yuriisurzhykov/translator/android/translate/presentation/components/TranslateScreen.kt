@@ -33,9 +33,12 @@ import com.yuriisurzhykov.translator.android.core.presentation.Routes
 import com.yuriisurzhykov.translator.android.core.theme.defaultPadding
 import com.yuriisurzhykov.translator.android.core.theme.floatingButtonSize
 import com.yuriisurzhykov.translator.android.translate.presentation.AndroidTranslateViewModel
+import com.yuriisurzhykov.translator.android.voice.presentation.AndroidVoiceToTextViewModel
+import com.yuriisurzhykov.translator.android.voice.presentation.VoiceToTextScreen
 import com.yuriisurzhykov.translator.translate.data.TranslationError
 import com.yuriisurzhykov.translator.translate.presentation.TranslateState
 import com.yuriisurzhykov.translator.translate.presentation.events.*
+import com.yuriisurzhykov.translator.voice.presentation.VoiceToTextEvent
 
 @Composable
 fun TranslateRoot() {
@@ -43,27 +46,58 @@ fun TranslateRoot() {
     NavHost(
         navController = navigationController, startDestination = Routes.TRANSLATE.routeName
     ) {
+        val voiceResultKey = "voiceResult"
+        val languageCodeKey = "languageCode"
+
         composable(route = Routes.TRANSLATE.routeName) {
             val viewModel = hiltViewModel<AndroidTranslateViewModel>()
             val state by viewModel.translateStateFlow().collectAsState()
-            TranslateScreen(
-                state = state, onEvent = { event ->
-                    if (event is TranslateEvent.RecordAudio) {
-                        navigationController.navigate(Routes.VOICE_TO_TEXT.routeName + "/${state.fromLanguage.language.code}")
-                    } else {
-                        viewModel.sendEvent(event)
-                    }
+
+            val voiceResult by it
+                .savedStateHandle
+                .getStateFlow<String?>(voiceResultKey, null)
+                .collectAsState()
+
+            LaunchedEffect(key1 = voiceResult) {
+                viewModel.sendEvent(SubmitVoiceResult(voiceResult))
+                it.savedStateHandle[voiceResultKey] = null
+            }
+
+            TranslateScreen(state = state, onEvent = { event ->
+                if (event is TranslateEvent.RecordAudio) {
+                    navigationController.navigate(Routes.VOICE_TO_TEXT.routeName + "/${state.fromLanguage.language.code}")
+                } else {
+                    viewModel.sendEvent(event)
                 }
-            )
+            })
         }
         composable(
-            route = Routes.VOICE_TO_TEXT.routeName + "/{languageCode}",
-            arguments = listOf(navArgument("languageCode") {
+            route = Routes.VOICE_TO_TEXT.routeName + "/{$languageCodeKey}",
+            arguments = listOf(navArgument(languageCodeKey) {
                 type = NavType.StringType
                 defaultValue = "en"
             })
-        ) {
-            Text(text = "Voice-to-text")
+        ) { backStackEntry ->
+            val languageCode = backStackEntry.arguments?.getString(languageCodeKey) ?: "en"
+            val viewModel = hiltViewModel<AndroidVoiceToTextViewModel>()
+            val state by viewModel.state().collectAsState()
+            VoiceToTextScreen(
+                state = state,
+                languageCode = languageCode,
+                onResult = { spokenText ->
+                    navigationController.previousBackStackEntry?.savedStateHandle?.set(
+                        voiceResultKey, spokenText
+                    )
+                    navigationController.popBackStack()
+                },
+                onEvent = { event ->
+                    when (event) {
+                        is VoiceToTextEvent.Close -> {
+                            navigationController.popBackStack()
+                        }
+                        else -> viewModel.sendEvent(event)
+                    }
+                })
         }
     }
 }
@@ -116,39 +150,33 @@ fun TranslateScreen(
 
 @Composable
 fun TranslateScreenHeader(
-    state: TranslateState,
-    onEvent: (TranslateEvent) -> Unit
+    state: TranslateState, onEvent: (TranslateEvent) -> Unit
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        LanguageDropDown(
-            language = state.fromLanguage,
+        LanguageDropDown(language = state.fromLanguage,
             isOpen = state.isChoosingFromLanguage,
             onClick = { onEvent(OpenFromLanguageDropDown) },
             onDismiss = { onEvent(StopChoosingLanguage) },
-            onSelectLanguage = { onEvent(ChooseFromLanguage(it)) }
-        )
+            onSelectLanguage = { onEvent(ChooseFromLanguage(it)) })
         Spacer(modifier = Modifier.weight(1f))
         SwapLanguagesButton(onClick = { onEvent(SwapLanguages) })
         Spacer(modifier = Modifier.weight(1f))
-        LanguageDropDown(
-            language = state.toLanguage,
+        LanguageDropDown(language = state.toLanguage,
             isOpen = state.isChoosingToLanguage,
             onClick = { onEvent(OpenToLanguageDropDown) },
             onDismiss = { onEvent(StopChoosingLanguage) },
-            onSelectLanguage = { onEvent(ChooseToLanguage(it)) }
-        )
+            onSelectLanguage = { onEvent(ChooseToLanguage(it)) })
     }
 }
 
 
 @Composable
 fun TranslateScreenInputs(
-    state: TranslateState,
-    onEvent: (TranslateEvent) -> Unit
+    state: TranslateState, onEvent: (TranslateEvent) -> Unit
 ) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
@@ -200,8 +228,7 @@ fun TranslateScreenHistoryHeader(
 
 @Composable
 fun TranslateScreenErrorScope(
-    state: TranslateState,
-    onEvent: (TranslateEvent) -> Unit
+    state: TranslateState, onEvent: (TranslateEvent) -> Unit
 ) {
     val context = LocalContext.current
     LaunchedEffect(key1 = state.error) {
