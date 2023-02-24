@@ -17,4 +17,9 @@
     <string name="error_message_unknown_error">Wow, you are invented new error! Please, contact with support.</string>
     <string name="label_record_audio">Record audio</string>
     <string name="app_name">TranslaQuick</string>
+    <string name="label_stop_recording">Stop recording</string>
+    <string name="label_apply_recorded_result">Apply recording</string>
+    <string name="label_record_again">Record again</string>
+    <string name="label_listening">Listening...</string>
+    <string name="label_start_talking">Press the button and start talking to record</string>
 </resources>
