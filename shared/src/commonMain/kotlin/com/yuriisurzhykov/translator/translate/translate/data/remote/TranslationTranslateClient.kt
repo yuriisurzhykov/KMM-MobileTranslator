@@ -6,5 +6,5 @@ import io.ktor.client.*
 
 class TranslationTranslateClient(
     httpClient: HttpClient,
-    requestTransform: ServerRequestBuilder<TranslateRequestModel>
+    requestTransform: ServerRequestBuilder
 ) : AbstractTranslateClient(httpClient, requestTransform, TranslationTranslateResponseMapper())

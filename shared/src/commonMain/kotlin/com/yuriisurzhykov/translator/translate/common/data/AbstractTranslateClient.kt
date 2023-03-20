@@ -8,7 +8,7 @@ import io.ktor.utils.io.errors.*
 
 abstract class AbstractTranslateClient(
     private val httpClient: HttpClient,
-    private val requestTransform: ServerRequestBuilder<TranslateRequestModel>,
+    private val requestTransform: ServerRequestBuilder,
     private val responseMapper: TranslateResponseMapper
 ) : TranslateClient {
 
