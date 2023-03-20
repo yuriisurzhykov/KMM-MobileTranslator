@@ -20,6 +20,7 @@ android {
         targetSdk = ProjectConfig.Android.targetVersion
         versionCode = 1
         versionName = "1.0"
+        buildConfigField("String", "TRANSLATE_API_KEY", "\"${getTranslateApiKey()}\"")
     }
     signingConfigs {
         create("release") {
@@ -49,7 +50,10 @@ android {
             isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -84,4 +88,16 @@ dependencies {
 
     kaptAndroidTest(Deps.hiltAndroidCompiler)
     androidTestImplementation(Deps.hiltTesting)
+}
+
+fun getTranslateApiKey(): String {
+    var apiKey = System.getenv("TRANSLATE_API_KEY")
+    if (apiKey.isNullOrEmpty()) {
+        val propertiesFile = Properties()
+        FileInputStream(file("keys.properties")).use { stream ->
+            propertiesFile.load(stream)
+        }
+        apiKey = propertiesFile.getProperty("deeplApiKey")
+    }
+    return apiKey
 }

@@ -64,7 +64,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApiKeyProvider(app: Application): ApiKeyProvider {
-        return ApiKeyFileProvider(app)
+    fun provideApiKeyProvider(): ApiKeyProvider {
+        return ApiKeyFileProvider()
     }
 }
