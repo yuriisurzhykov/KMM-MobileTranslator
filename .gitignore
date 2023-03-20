@@ -12,3 +12,4 @@ xcuserdata
 /androidApp/signing.properties
 /androidApp/keystore.jks
 /androidApp/keystore.txt
+/buildSrc/src/main/kotlin/keys.properties

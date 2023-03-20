@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.yuriisurzhykov.translator.android.translate.presentation.components.TranslateRoot
 import com.yuriisurzhykov.translator.android.translate.presentation.components.TranslateScreen
-import com.yuriisurzhykov.translator.translate.presentation.TranslateState
+import com.yuriisurzhykov.translator.translate.common.presentation.TranslateState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

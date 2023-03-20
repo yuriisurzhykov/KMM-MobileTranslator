@@ -35,9 +35,9 @@ import com.yuriisurzhykov.translator.android.core.theme.floatingButtonSize
 import com.yuriisurzhykov.translator.android.translate.presentation.AndroidTranslateViewModel
 import com.yuriisurzhykov.translator.android.voice.presentation.AndroidVoiceToTextViewModel
 import com.yuriisurzhykov.translator.android.voice.presentation.VoiceToTextScreen
-import com.yuriisurzhykov.translator.translate.data.TranslationError
-import com.yuriisurzhykov.translator.translate.presentation.TranslateState
-import com.yuriisurzhykov.translator.translate.presentation.events.*
+import com.yuriisurzhykov.translator.translate.common.data.TranslationError
+import com.yuriisurzhykov.translator.translate.common.presentation.TranslateState
+import com.yuriisurzhykov.translator.translate.common.presentation.events.*
 import com.yuriisurzhykov.translator.voice.presentation.VoiceToTextEvent
 
 @Composable

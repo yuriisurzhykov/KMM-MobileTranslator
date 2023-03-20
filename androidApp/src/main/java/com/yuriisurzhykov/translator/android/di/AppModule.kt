@@ -2,19 +2,19 @@ package com.yuriisurzhykov.translator.android.di
 
 import android.app.Application
 import com.squareup.sqldelight.db.SqlDriver
-import com.yuriisurzhykov.translator.android.core.data.ApiKeyFileProvider
+import com.yuriisurzhykov.translator.android.core.data.TranslationApiKeyProvider
 import com.yuriisurzhykov.translator.core.data.ApiKeyProvider
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.database.TranslateDatabase
 import com.yuriisurzhykov.translator.history.data.SqlDelightHistoryDataSource
 import com.yuriisurzhykov.translator.history.domain.HistoryDataSource
 import com.yuriisurzhykov.translator.history.domain.HistoryEntityListMapper
-import com.yuriisurzhykov.translator.translate.data.KtorTranslateClient
-import com.yuriisurzhykov.translator.translate.data.TranslateClient
-import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
-import com.yuriisurzhykov.translator.translate.data.local.DatabaseDriverFactory
-import com.yuriisurzhykov.translator.translate.data.remote.HttpClientFactory
-import com.yuriisurzhykov.translator.translate.domain.TranslateUseCase
+import com.yuriisurzhykov.translator.translate.translate.data.remote.TranslationTranslateClient
+import com.yuriisurzhykov.translator.translate.common.data.TranslateClient
+import com.yuriisurzhykov.translator.translate.common.data.TranslateRequestModel
+import com.yuriisurzhykov.translator.translate.common.data.DatabaseDriverFactory
+import com.yuriisurzhykov.translator.translate.common.data.HttpClientFactory
+import com.yuriisurzhykov.translator.translate.common.domain.TranslateUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,7 +37,7 @@ object AppModule {
     fun provideTranslateClient(
         httpClient: HttpClient, requestBuilder: ServerRequestBuilder<TranslateRequestModel>
     ): TranslateClient {
-        return KtorTranslateClient(httpClient, requestBuilder)
+        return TranslationTranslateClient(httpClient, requestBuilder)
     }
 
     @Provides
@@ -65,6 +65,6 @@ object AppModule {
     @Provides
     @Singleton
     fun provideApiKeyProvider(): ApiKeyProvider {
-        return ApiKeyFileProvider()
+        return TranslationApiKeyProvider()
     }
 }

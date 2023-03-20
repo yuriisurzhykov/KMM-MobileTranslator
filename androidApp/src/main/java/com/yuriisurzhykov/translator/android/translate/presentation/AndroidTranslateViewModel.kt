@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yuriisurzhykov.translator.history.domain.HistoryDataSource
 import com.yuriisurzhykov.translator.history.presentation.UiHistoryItemMapper
-import com.yuriisurzhykov.translator.translate.domain.TranslateUseCase
-import com.yuriisurzhykov.translator.translate.presentation.TranslateState
-import com.yuriisurzhykov.translator.translate.presentation.TranslateViewModel
-import com.yuriisurzhykov.translator.translate.presentation.events.TranslateEvent
+import com.yuriisurzhykov.translator.translate.common.domain.TranslateUseCase
+import com.yuriisurzhykov.translator.translate.common.presentation.TranslateState
+import com.yuriisurzhykov.translator.translate.common.presentation.TranslateViewModel
+import com.yuriisurzhykov.translator.translate.common.presentation.events.TranslateEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject

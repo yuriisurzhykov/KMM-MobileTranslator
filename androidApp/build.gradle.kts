@@ -20,7 +20,12 @@ android {
         targetSdk = ProjectConfig.Android.targetVersion
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "TRANSLATE_API_KEY", "\"${getTranslateApiKey()}\"")
+        buildConfigField(
+            "String", "TRANSLATE_API_KEY", "\"${provideTranslateApiKey()}\""
+        )
+        buildConfigField(
+            "String", "DEEPL_API_KEY", "\"${provideDeepLApiKey()}\""
+        )
     }
     signingConfigs {
         create("release") {
@@ -51,8 +56,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
         }
@@ -90,14 +94,17 @@ dependencies {
     androidTestImplementation(Deps.hiltTesting)
 }
 
-fun getTranslateApiKey(): String {
-    var apiKey = System.getenv("TRANSLATE_API_KEY")
+fun provideTranslateApiKey() = provideApiKey("TRANSLATE_API_KEY", "translationApiKey")
+fun provideDeepLApiKey() = provideApiKey("DEEPL_API_KEY", "deeplApiKey")
+
+fun provideApiKey(systemEnvName: String, propsName: String): String {
+    var apiKey = System.getenv(systemEnvName)
     if (apiKey.isNullOrEmpty()) {
         val propertiesFile = Properties()
         FileInputStream(file("keys.properties")).use { stream ->
             propertiesFile.load(stream)
         }
-        apiKey = propertiesFile.getProperty("deeplApiKey")
+        apiKey = propertiesFile.getProperty(propsName)
     }
     return apiKey
 }
