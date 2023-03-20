@@ -28,12 +28,10 @@ import kotlin.random.Random
 
 @Composable
 fun VoiceRecorderDisplay(
-    powerRatiosFlow: CommonMutableStateFlow<List<Float>>,
+    powerRatios: List<Float>,
     modifier: Modifier = Modifier
 ) {
     val primaryColor = MaterialTheme.colors.primary
-    val powerRatios by powerRatiosFlow.collectAsState()
-    Log.e("TAG", "VoiceRecorderDisplay: rerender power ratios: ${powerRatios.joinToString("\t")}")
     Box(
         modifier = modifier
             .shadow(

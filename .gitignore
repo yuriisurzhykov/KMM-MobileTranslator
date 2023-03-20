@@ -8,4 +8,8 @@ captures
 .cxx
 local.properties
 xcuserdata
-/androidApp/src/main/assets/apikey.base64
+/androidApp/keys.properties
+/androidApp/signing.properties
+/androidApp/keystore.jks
+/androidApp/keystore.txt
+/buildSrc/src/main/kotlin/keys.properties

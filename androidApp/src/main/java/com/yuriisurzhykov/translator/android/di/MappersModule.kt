@@ -4,7 +4,7 @@ import com.yuriisurzhykov.translator.core.data.ApiKeyProvider
 import com.yuriisurzhykov.translator.core.data.ServerRequestBuilder
 import com.yuriisurzhykov.translator.history.domain.HistoryEntityListMapper
 import com.yuriisurzhykov.translator.history.presentation.UiHistoryItemMapper
-import com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel
+import com.yuriisurzhykov.translator.translate.common.data.TranslateRequestModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,7 +29,7 @@ object MappersModule {
 
     @Provides
     @Singleton
-    fun provideServerRequestBuilder(apiProvider: ApiKeyProvider): ServerRequestBuilder<TranslateRequestModel> {
-        return ServerRequestBuilder.Base(apiProvider)
+    fun provideServerRequestBuilder(apiProvider: ApiKeyProvider): ServerRequestBuilder {
+        return ServerRequestBuilder.DeepL(apiProvider)
     }
 }

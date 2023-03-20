@@ -1,5 +1,5 @@
--keep class com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel { *; }
--keep class com.yuriisurzhykov.translator.translate.data.remote.TranslateRequestModel { *; }
+-keep class com.yuriisurzhykov.translator.translate.common.data.TranslateRequestModel { *; }
+-keep class com.yuriisurzhykov.translator.translate.common.data.TranslateRequestModel { *; }
 
 -keepclassmembernames class com.yuriisurzhykov.translator.** {
     *;

@@ -160,7 +160,7 @@ fun VoiceToTextScreen(
                         is DisplayState.Speaking -> {
                             Log.e("TAG", "VoiceToTextScreen: rendering voice recorder display")
                             VoiceRecorderDisplay(
-                                powerRatiosFlow = state.powerRatios,
+                                powerRatios = state.powerRatios,
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(100.dp)
