@@ -29,7 +29,7 @@ object MappersModule {
 
     @Provides
     @Singleton
-    fun provideServerRequestBuilder(apiProvider: ApiKeyProvider): ServerRequestBuilder<TranslateRequestModel> {
-        return ServerRequestBuilder.Translation(apiProvider)
+    fun provideServerRequestBuilder(apiProvider: ApiKeyProvider): ServerRequestBuilder {
+        return ServerRequestBuilder.DeepL(apiProvider)
     }
 }
