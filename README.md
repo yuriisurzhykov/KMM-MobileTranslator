@@ -9,6 +9,7 @@ The application is now available on Google Play Market! <br>
 * [Dagger 2](https://developer.android.com/training/dependency-injection/hilt-android) - is using to manage the dependencies for each component in project.
 * [SQLDelight](https://github.com/cashapp/sqldelight) is the library that allows to create common database logic and scripts and share it between Android Project and iOS.
 * [Ktor client](https://ktor.io/docs/create-client.html) is the modern library that allows to write client and server applications using Kotlin.
+* [Jetpack Compose](https://developer.android.com/jetpack/compose) is Android’s recommended modern toolkit for building native UI. .
 * [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) is using for asynchronous jobs.
 * [GitHub Actions](https://github.com/features/actions) - is using for CI/CD
 
